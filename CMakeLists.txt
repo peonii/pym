@@ -19,6 +19,8 @@ file(GLOB_RECURSE SOURCES
 
 target_sources(libpym PRIVATE ${SOURCES})
 
+message(${CMAKE_BINARY_DIR})
+
 execute_process(
     COMMAND ${CMAKE_COMMAND} -E create_symlink 
             ${CMAKE_BINARY_DIR}/compile_commands.json

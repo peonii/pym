@@ -4,18 +4,19 @@
 
 namespace pym {
 
-template <typename LhsT, typename RhsT, typename ResT> class lazy_eval_binary {
-  const LhsT &lhs;
-  const RhsT &rhs;
+template <typename LhsT, typename RhsT = LhsT, typename ResT = LhsT>
+class lazy_eval_binary {
+    const LhsT& lhs;
+    const RhsT& rhs;
 
-  using MapFn = std::function<ResT(const LhsT &, const RhsT &)>;
-  MapFn fn;
+    using MapFn = std::function<ResT(const LhsT&, const RhsT&)>;
+    MapFn fn;
 
-public:
-  lazy_eval_binary(const LhsT &lhs, const RhsT &rhs, MapFn fn)
-      : lhs(lhs), rhs(rhs), fn(fn) {}
+  public:
+    lazy_eval_binary(const LhsT& lhs, const RhsT& rhs, MapFn fn)
+        : lhs(lhs), rhs(rhs), fn(fn) {}
 
-  operator ResT() const { return fn(lhs, rhs); }
+    operator ResT() const { return fn(lhs, rhs); }
 };
 
 } // namespace pym
